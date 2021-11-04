@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f321eac807b21054cb04359962c64a60, type: 3}
+  m_Name: Level2
+  m_EditorClassIdentifier: 
+  gridConfig: {fileID: 11400000, guid: e65acc37ee34b794abdca71d608471a0, type: 2}
+  questionData: {fileID: 11400000, guid: 480bf00509d29aa4bab31555b3c120c6, type: 2}
