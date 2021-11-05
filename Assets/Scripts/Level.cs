@@ -15,7 +15,6 @@ public class Level : MonoBehaviour
 
     int currentLevel = 0;
 
-
     public void Awake()
     {
         unusedAnswers = new Dictionary<QuestionData, HashSet<int>>();
