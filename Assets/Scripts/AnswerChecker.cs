@@ -1,34 +1,42 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using DG.Tweening;
 
 public class AnswerChecker : MonoBehaviour
 {
     [SerializeField] AnswerCheckerView view;
     [SerializeField] ParticleSystem starSystem;
-    [SerializeField] UnityEvent onCorrectAnswer;
+    [SerializeField] UnityEvent onReadyToSwitchLevels;
 
-    Question correctAnswer;
+    string correctAnswer;
 
+    Tweener correctAnswerTween;
 
-    public void SetCorrectAnswer(Question correctAnswer)
+    public void SetCorrectAnswer(string correctAnswer)
     {
         this.correctAnswer = correctAnswer;
 
-        view.SetQuestionText(correctAnswer.name);
+        view.SetQuestionText(correctAnswer);
     }
 
     public void CheckAnswer(Cell cell)
     {
         if (cell.GetAnswer() == correctAnswer)
         {
-            cell.OnCorrectAnswer();
-            PlayStarSystem(cell.transform.position);
+            if (!starSystem.isPlaying)
+                PlayStarSystem(cell.transform.position);
 
-            onCorrectAnswer.Invoke();
+            if (correctAnswerTween == null)
+            {
+                correctAnswerTween = PlayCorrectAnswerTween(cell.GetContent());
+
+                StartCoroutine(WaitForCorrectAnswerTweenCompletion());
+            }
         }
         else
         {
-            cell.OnWrongAnswer();
+            cell.PlayWrongAnswerTween();
         }
     }
 
@@ -36,5 +44,25 @@ public class AnswerChecker : MonoBehaviour
     {
         starSystem.transform.position = position;
         starSystem.Play();;
+    }
+
+    Tweener PlayCorrectAnswerTween(SpriteRenderer cellContent)
+    {
+        return
+            cellContent.transform.DOMoveY(1, .5f)
+            .SetEase(Ease.OutBounce)
+            .SetLoops(2, LoopType.Yoyo)
+            .SetRelative(true)
+            .SetAutoKill(false);
+    }
+
+    IEnumerator WaitForCorrectAnswerTweenCompletion()
+    {
+        yield return correctAnswerTween.WaitForCompletion();
+
+        correctAnswerTween.Kill();;
+        correctAnswerTween = null;
+
+        onReadyToSwitchLevels.Invoke();
     }
 }

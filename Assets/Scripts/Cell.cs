@@ -3,24 +3,28 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-
-[System.SerializableAttribute]
-public class AnswerEvent : UnityEvent<Cell> {}
-
 public class Cell : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] AnswerChecker answerChecker;
     [SerializeField] SpriteRenderer background, content;
     [SerializeField] AnswerEvent onAnswer;
 
-    Question answer;
+    bool isClickable = true;
+
+    string answer;
 
     Tweener
         wrongAnswerTween,
-        correctAnswerTween;
+        appearTween;
 
     public void Awake()
     {
+        appearTween =
+            transform.DOScale(1f, .5f)
+            .SetEase(Ease.OutBounce)
+            .SetAutoKill(false)
+            .Pause();
+
         wrongAnswerTween =
             content.transform.DOMoveX(1, .25f)
             .SetEase(Ease.InBounce)
@@ -28,43 +32,46 @@ public class Cell : MonoBehaviour, IPointerDownHandler
             .SetRelative(true)
             .SetAutoKill(false)
             .Pause();
-
-        wrongAnswerTween.onComplete = () => wrongAnswerTween.Rewind();
-
-
-        correctAnswerTween =
-            content.transform.DOMoveY(1, .5f)
-            .SetEase(Ease.OutBounce)
-            .SetLoops(2, LoopType.Yoyo)
-            .SetRelative(true)
-            .SetAutoKill(false)
-            .Pause();
-
-        correctAnswerTween.onComplete = () => correctAnswerTween.Rewind();
     }
 
-    public void SetAnswer(Question answer)
+    public void Setup(string answer, Sprite sprite)
     {
         this.answer = answer;
-        content.sprite = answer.sprite;
+        content.sprite = sprite;
+        isClickable = true;
     }
-    public Question GetAnswer()
-    {
-        return answer;
-    }
+
+    public string GetAnswer() => answer;
+
+    public SpriteRenderer GetContent() => content;
+
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (!isClickable) return;
+
         onAnswer.Invoke(this);
     }
 
-    public void OnCorrectAnswer()
-    {
-        correctAnswerTween.Play();
-    }
 
-    public void OnWrongAnswer()
+    public void PlayWrongAnswerTween()
     {
+        wrongAnswerTween.Rewind();
         wrongAnswerTween.Play();
     }
+
+    public void PlayAppearTween()
+    {
+        transform.localScale = Vector3.zero;
+        appearTween.Rewind();
+        appearTween.Play();
+    }
+
+    public void SetUnclickable()
+    {
+        isClickable = false;
+    }
 }
+
+[System.SerializableAttribute]
+public class AnswerEvent : UnityEvent<Cell> {}

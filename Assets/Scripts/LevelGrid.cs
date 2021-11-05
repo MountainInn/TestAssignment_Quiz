@@ -16,12 +16,13 @@ public class LevelGrid : MonoBehaviour
         cells = new List<Cell>();
     }
 
+
     public void SetConfig(GridConfig gridConfig)
     {
         config = gridConfig;
     }
 
-    public void SetupCells(List<Question> selectedQuestions)
+    public void SetupCells(List<string> selectedQuestions, List<Sprite> selectedSprites)
     {
         int
             currentSize = cells.Count,
@@ -44,12 +45,12 @@ public class LevelGrid : MonoBehaviour
             }
         }
 
-        Resize();
-
         for (int i = 0; i < targetSize; i++)
         {
-            cells[i].SetAnswer(selectedQuestions[i]);
+            cells[i].Setup(selectedQuestions[i], selectedSprites[i]);
         }
+
+        Resize();
     }
 
     private void Resize()
@@ -58,15 +59,14 @@ public class LevelGrid : MonoBehaviour
             column = 0,
             row = 0;
 
-        Vector3
-            correction = config.GetCorrection();
+        Vector3 correction = config.GetCorrection();
 
         for (int i = 0; i < config.GetCellCount(); i++)
         {
             cells[i].transform.position =
                 transform.position
                 - correction
-                + new Vector3(column, row, 0) * config.cellsize ;
+                + new Vector3(column, row, 0) * (config.cellsize + config.margin);
 
             column++;
             if (column >= config.width)
@@ -80,6 +80,32 @@ public class LevelGrid : MonoBehaviour
     private Cell InstCell()
     {
         return Instantiate(prefCell);
+    }
+
+    public void DestroyCells()
+    {
+        for (int i = cells.Count-1; i >= 0; i--)
+        {
+            Destroy(cells[i].gameObject);
+
+            cells.RemoveAt(i);
+        }
+    }
+
+    public void SetCellsUnclickable()
+    {
+        foreach(var item in cells)
+        {
+            item.SetUnclickable();
+        }
+    }
+
+    public void MakeCellsAppear()
+    {
+        foreach(var item in cells)
+        {
+            item.PlayAppearTween();;
+        }
     }
 
 }

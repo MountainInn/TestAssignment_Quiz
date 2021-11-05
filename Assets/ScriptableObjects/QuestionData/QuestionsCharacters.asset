@@ -12,4 +12,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8979183eb60072249b29799890444e9a, type: 3}
   m_Name: QuestionsCharacters
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 4963718625464178563, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: 7783457984840754399, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: 3234300448368640894, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: 7911670913450602933, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: -6426668015567183463, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: 216406037199867053, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: -2756605603065543306, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: -3541686595128163680, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: 4652326554734856401, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: -8235857483100294123, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: -1127063002332224934, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: -5901097786099144959, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: 3295844289267200183, guid: 5a5b46f3271fa034795d6cf64a9a14e6, type: 3}
+  - {fileID: 7112752472869403061, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: -6342808464625005154, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: 8083504644574312765, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: 3270655726746431581, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: -2983290644488427326, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: 5433449995169814141, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: -4447791616812998045, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: -9165466868132007793, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: -4461999128152558772, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: 7112752472869403061, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: -4252152113809563852, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: 4461586319009975920, guid: 97e8ffff096ff59449f3941b2a871684, type: 3}
+  - {fileID: -5001085640463096552, guid: 3f1df89287222bc4e91721f319bb8287, type: 3}
+  - {fileID: 3539555106843919260, guid: 3f1df89287222bc4e91721f319bb8287, type: 3}
+  answers:
+  - A
+  - B
+  - C
+  - D
+  - F
+  - G
+  - J
+  - I
+  - E
+  - H
+  - K
+  - L
+  - M
+  - N
+  - R
+  - S
+  - U
+  - V
+  - O
+  - Q
+  - W
+  - T
+  - N
+  - P
+  - X
+  - Y
+  - Z
   questions: []
+  references:
+    version: 1
